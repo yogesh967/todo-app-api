@@ -25,7 +25,7 @@ const createTodo = async (req, res) => {
 
 const updateTodo = async (req, res) => {
   const todo = req.body;
-  const todoId = "66b75043fc41a5493871d9fa";
+  const todoId = req.params.id;
 
   await Todo.findByIdAndUpdate({ _id: todoId }, todo, { new: true })
     .then((data) => {
