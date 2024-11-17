@@ -21,7 +21,8 @@ app.listen(PORT, () => {
 });
 
 // app.use(express.urlencoded({ extended: false }));
-app.use("/", todoRoutes);
+todoRoutes(app);
+userRoutes(app);
 
 // app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(bodyParser.json());

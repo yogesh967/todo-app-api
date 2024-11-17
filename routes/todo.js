@@ -1,30 +1,31 @@
-const app = require("express");
-const { isLoggedIn } = require("../middlewares/authenticateToken");
-const todoHandlers = require("../controllers/todo");
+module.exports = (app) => {
+  const { isLoggedIn } = require("../middlewares/authenticateToken");
+  const todoHandlers = require("../controllers/todo");
 
-const router = app.Router();
+  const apiBasePathUrl = "/api/v1/todo";
 
-const apiBasePathUrl = "/api/v1/todo";
+  app.get(
+    `${apiBasePathUrl}/fetchAllTodos`,
+    isLoggedIn,
+    todoHandlers.fetchAllTodos
+  );
+  app.post(`${apiBasePathUrl}/createTodo`, isLoggedIn, todoHandlers.createTodo);
 
-router.get(
-  `${apiBasePathUrl}/fetchAllTodos`,
-  isLoggedIn,
-  todoHandlers.fetchAllTodos
-);
-router.post(
-  `${apiBasePathUrl}/createTodo`,
-  isLoggedIn,
-  todoHandlers.createTodo
-);
+  app.put(
+    `${apiBasePathUrl}/updateTodo/:id`,
+    isLoggedIn,
+    todoHandlers.updateTodo
+  );
 
-router.put(
-  `${apiBasePathUrl}/updateTodo/:id`,
-  (req, res) => {
-    console.log(req.params);
-    res.send(req.params);
-  },
-  isLoggedIn,
-  todoHandlers.updateTodo
-);
+  app.delete(
+    `${apiBasePathUrl}/deleteTodo/:id`,
+    isLoggedIn,
+    todoHandlers.deleteTodo
+  );
 
-module.exports = router;
+  app.patch(
+    `${apiBasePathUrl}/DoneTodo/:id`,
+    isLoggedIn,
+    todoHandlers.doneTask
+  );
+};

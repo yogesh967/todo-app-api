@@ -7,11 +7,12 @@ mongoose
   .connect(DATABASE_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    dbName: "todo-app",
   })
   .then(() => console.log("connected to mongodb"))
   .catch((e) => {
     console.error("Could not connect to the database", e);
-    process.exit();
+    // process.exit();
   });
 
 module.exports = mongoose;
