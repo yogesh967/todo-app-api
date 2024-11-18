@@ -9,14 +9,14 @@ const User = require("./models/user");
 const todoRoutes = require("./routes/todo");
 const Task = require("./models/todo");
 
-const { PORT } = process.env;
+const port = process.env.PORT || 7000;
 
 const app = express();
 
 // Middleware
 app.use(cors(
   {
-    origin: ["https://todo-app-api-rust.vercel.app"],
+    origin: ["https://todo-app-weld-seven.vercel.app"],
     methods: ["POST", "GET"],
     credentials: true
   }
@@ -33,8 +33,8 @@ app.use(function (req, res) {
   res.status(404).send({ url: req.originalUrl + " not found" });
 });
 
-app.listen(PORT, () => {
-  console.log("listening port", PORT);
+app.listen(port, () => {
+  console.log("listening port", port);
 });
 
 module.exports = app;
