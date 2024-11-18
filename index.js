@@ -10,17 +10,19 @@ const todoRoutes = require("./routes/todo");
 const Task = require("./models/todo");
 
 const port = process.env.PORT || 7000;
+// const origin = process.env.FRONTEND_ORIGIN;
 
 const app = express();
 
 // Middleware
-app.use(cors(
-  {
-    origin: ["https://todo-app-weld-seven.vercel.app"],
-    methods: ["POST", "GET"],
-    credentials: true
-  }
-));
+app.use(cors());
+// app.use(
+//   cors({
+//     origin: [origin],
+//     methods: ["POST", "GET"],
+//     credentials: true,
+//   })
+// );
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
