@@ -10,16 +10,13 @@ const todoRoutes = require("./routes/todo");
 const Task = require("./models/todo");
 
 const port = process.env.PORT || 7000;
-const origin = process.env.FRONTEND_ORIGIN;
 
 const app = express();
 
-// Middleware
-// app.use(cors());
 app.use(
   cors({
-    origin: origin,
-    methods: ['POST', 'GET', 'PUT', 'DELETE', 'PATCH'],
+    origin: "*",
+    methods: ["POST", "GET", "PUT", "DELETE", "PATCH"],
     credentials: true,
   })
 );
